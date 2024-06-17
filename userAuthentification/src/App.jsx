@@ -1,15 +1,18 @@
-import { useState } from 'react'
+import { useState } from "react";
+import Authenticate from "./components/Authenticate.jsx";
+import SignUpForm from "./components/SignUpForm.jsx";
+import { TokenContext } from "./TokenContext";
+import "./App.css";
 
-import './App.css'
-
-function App() {
-  
-
+export default function App() {
+  const [token, setToken] = useState(null);
   return (
     <>
-      
-    </>
-  )
-}
+      <TokenContext.Provider value={{ token, setToken }}>
+        <SignUpForm token={token} setToken={setToken} />
 
-export default App
+        <Authenticate token={token} setToken={setToken} />
+      </TokenContext.Provider>
+    </>
+  );
+}
